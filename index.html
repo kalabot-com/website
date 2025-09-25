@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalabot — your 24/7 receptionist on WhatsApp</title>
+  <meta name="description" content="Stop losing bookings & leads. Simple WhatsApp automation pilot for salons, clinics, restaurants & professionals in Spain." />
+  <meta property="og:title" content="Kalabot – WhatsApp receptionist" />
+  <meta property="og:description" content="Bookings, leads & service requests handled automatically." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/kalabot-og.png" />
+  <meta name="theme-color" content="#16a34a" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    :root { --kalabot-green:#16a34a; --kalabot-green-soft:#ddf7e7; }
+    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; }
+  .brand-name { font-weight:600; color:var(--kalabot-green); }
+  .brand-name:hover { color:var(--kalabot-green); }
+    .hero-gradient { background:radial-gradient(circle at 20% 20%, #ecfdf3 0, #ffffff 60%); }
+    .hero-title { letter-spacing:-.5px; }
+    .lead { max-width:740px; }
+    .whatsapp-btn span { font-size:1.25rem; line-height:1; }
+    .icon-circle { width:48px; height:48px; border-radius:50%; background:var(--kalabot-green-soft); display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
+    .feature-card { transition:.25s; }
+    .feature-card:hover { transform:translateY(-4px); box-shadow:0 .5rem 1rem rgba(0,0,0,.08); }
+    .mini-divider { height:1px; background:linear-gradient(90deg,transparent,#d1e8d8,transparent); margin:2.5rem 0; }
+    .why-list li + li { margin-top:.4rem; }
+    footer { font-size:.75rem; }
+    @media (min-width:992px){ .hero-title{font-size:3.3rem;} }
+  </style>
+</head>
+<body>
+  <header class="border-bottom py-3 mb-4">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
+      <a href="#top" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+        <img src="assets/kalabot-logo.png" alt="Kalabot" style="height:54px;" onerror="this.style.display='none'" />
+        <span class="ms-2 h5 mb-0 brand-name">Kalabot</span>
+      </a>
+      <div class="text-end d-none d-md-flex gap-2">
+        <a href="#services" class="btn btn-outline-success btn-sm">Services</a>
+        <a href="#why" class="btn btn-outline-success btn-sm">Why us</a>
+        <a href="https://wa.me/34600111222" target="_blank" rel="noopener" class="btn btn-success btn-sm d-inline-flex align-items-center gap-1"><span>💬</span> Chat</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero-gradient pt-4 pb-5 text-center text-lg-start">
+      <div class="container">
+        <div class="row gy-5 align-items-center">
+          <div class="col-lg-7 order-lg-1">
+            <h1 class="display-5 fw-bold hero-title">Your 24/7 receptionist on WhatsApp</h1>
+            <p class="lead text-secondary">WhatsApp keeps buzzing while you’re working. Kalabot books appointments, answers common questions, captures leads and service requests – automatically – so you keep the client and the slot.</p>
+            <div class="d-flex flex-wrap gap-3 mb-3">
+              <a class="btn btn-success btn-lg whatsapp-btn d-inline-flex align-items-center gap-2 shadow" href="https://wa.me/34600111222" target="_blank" rel="noopener" aria-label="Open WhatsApp to contact Kalabot">
+                <span>💬</span> Message us on WhatsApp
+              </a>
+            </div>
+            <p class="small text-secondary mb-0">Pilot live in Spain — salons, clinics, restaurants & independent professionals. Expanding soon.</p>
+          </div>
+          <div class="col-lg-5 order-lg-2 d-flex justify-content-lg-end">
+            <!-- Placeholder illustrative panel -->
+            <div class="w-100" style="max-width:380px;">
+              <div class="border rounded-4 p-3 bg-white shadow-sm">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <div class="icon-circle">💬</div>
+                  <div>
+                    <div class="fw-semibold small">Incoming chat</div>
+                    <div class="text-secondary small">+34 600 • 11:02</div>
+                  </div>
+                </div>
+                <div class="bg-light rounded-3 p-2 small mb-2">Hi, do you have availability at 17:30 for a haircut?</div>
+                <div class="text-white small rounded-3 p-2 mb-2" style="background:#16a34a; max-width:92%;">No sorry, 17:30 is booked, but we have 18:00 available.</div>
+                <div class="bg-light rounded-3 p-2 small mb-2">Great, please book it for me.</div>
+                <div class="text-white small rounded-3 p-2" style="background:#16a34a; max-width:92%;">Booked. See you then! If you need to reschedule? Just ask.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mini-divider"></div>
+
+    <!-- Services / Features -->
+    <section id="services" class="py-4 py-lg-5">
+      <div class="container">
+        <h2 class="h5 fw-semibold text-uppercase mb-4">Services</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100 border rounded-4 p-4">
+              <div class="icon-circle mb-3">📅</div>
+              <h3 class="h6 fw-semibold mb-2">Bookings</h3>
+              <ul class="list-unstyled small text-secondary mb-0">
+                <li>Shows free slots</li>
+                <li>Confirms instantly</li>
+                <li>Syncs calendar</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100 border rounded-4 p-4">
+              <div class="icon-circle mb-3">🧲</div>
+              <h3 class="h6 fw-semibold mb-2">Leads</h3>
+              <ul class="list-unstyled small text-secondary mb-0">
+                <li>Quick Q&amp;A</li>
+                <li>Flags hot leads</li>
+                <li>Simple export</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="feature-card h-100 border rounded-4 p-4">
+              <div class="icon-circle mb-3">🛠️</div>
+              <h3 class="h6 fw-semibold mb-2">Service / Jobs</h3>
+              <ul class="list-unstyled small text-secondary mb-0">
+                <li>Captures issue + location</li>
+                <li>Assigns to staff</li>
+                <li>Status updates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why" class="py-4 py-lg-5 bg-light-subtle border-top border-bottom">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="h5 fw-semibold text-uppercase mb-3">Why us?</h2>
+            <h3 class="h4 fw-semibold mb-3">Less setup, real help</h3>
+            <ul class="why-list small text-secondary mb-4">
+              <li>We handle WhatsApp setup</li>
+              <li>Onboarding help (not a PDF)</li>
+              <li>Support that answers fast</li>
+            </ul>
+            <a class="btn btn-success d-inline-flex align-items-center gap-2" href="https://wa.me/34600111222" target="_blank" rel="noopener"><span>💬</span> Chat now</a>
+          </div>
+          <div class="col-lg-6">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="border rounded-4 p-3 h-100 bg-white small d-flex flex-column justify-content-center">
+                  <span class="fw-semibold">Instant onboarding</span>
+                  <span class="text-secondary">Number + templates ready.</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border rounded-4 p-3 h-100 bg-white small d-flex flex-column justify-content-center">
+                  <span class="fw-semibold">Focused</span>
+                  <span class="text-secondary">WhatsApp first – no bloat.</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border rounded-4 p-3 h-100 bg-white small d-flex flex-column justify-content-center">
+                  <span class="fw-semibold">Vertical flows</span>
+                  <span class="text-secondary">Booking / lead / jobs.</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border rounded-4 p-3 h-100 bg-white small d-flex flex-column justify-content-center">
+                  <span class="fw-semibold">Human support</span>
+                  <span class="text-secondary">Fast, real answers.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-5 text-center">
+      <div class="container">
+        <h2 class="h4 fw-semibold mb-3">Ready to stop missing bookings & leads?</h2>
+        <p class="text-secondary small mb-4">See it working on your own number in under a day.</p>
+        <a class="btn btn-success btn-lg whatsapp-btn d-inline-flex align-items-center gap-2 shadow" href="https://wa.me/34600111222" target="_blank" rel="noopener">
+          <span>💬</span> Message us on WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-top py-4">
+    <div class="container text-center text-secondary">
+      © <span id="year"></span> Kalabot – Pilot Phase. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
