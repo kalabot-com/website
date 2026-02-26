@@ -40,8 +40,18 @@ All tasks from the initial plan have been implemented.
 ---
 
 ## Next steps (future work)
-- Run migrations before starting beta in Docker (or add to CI/CD).
-- Add confirmation/cancellation response handling for reminders.
-- Spanish quality validation with Kimi k2.5.
-- Stripe payment integration for onboarding.
-- QR link sharing page for end customers.
+- Review reminders:
+  - use luxon
+  - use start day and end day to find target dates
+  - in the reminder, do not ask for an answer, do the opposite: only if the user can not attend, send a message
+  - do it 2 - 3 times per day?
+  - is it safe to send menssages like that? probably not (pottential Meta ban)
+- review onboarding: it is not following what is defined in the readme
+  - payment
+  - phone numbers
+- calendar:
+  - maybe it is better to embeded the google calendar instead of creating our own view?
+  - from calendar event click and go to conversation
+- conversations and bookings: from bookings, go to conversation
+- manual conversation: in case of error, we may want the client to be able to talk with the customer and the bot must not answer. Maybe we can detect that kind of situation (when the client writes)
+- it just booked in a busy slot?
