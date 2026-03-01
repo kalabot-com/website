@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalabot Demo — Prueba el bot</title>
+  <meta name="description" content="Prueba el bot de Kalabot por WhatsApp y consulta el calendario publico de ejemplo.">
+  <meta property="og:title" content="Kalabot Demo — Prueba el bot">
+  <meta property="og:description" content="Escribe por WhatsApp y consulta el calendario de prueba.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta name="theme-color" content="#00C16A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Public Sans', 'system-ui', 'sans-serif'] },
+          colors: {
+            primary: {
+              50: '#EFFDF5',
+              100: '#D9FBE8',
+              200: '#B3F5D1',
+              300: '#75EDAE',
+              400: '#00DC82',
+              500: '#00C16A',
+              600: '#00A155',
+              700: '#007F45',
+              800: '#016538',
+              900: '#0A5331',
+              950: '#052E16'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .text-highlighted { color: rgb(15 23 42); }
+    .text-muted { color: rgb(100 116 139); }
+  </style>
+</head>
+<body class="font-sans antialiased text-slate-900">
+  <header class="border-b border-slate-200 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 no-underline">
+        <img src="logo-icon.svg" alt="Kalabot" class="h-10 w-auto" />
+        <span class="text-xl font-semibold text-primary-500">Kalabot</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <a href="https://wa.me/34600111222?text=Hola%2C%20quiero%20probar%20el%20bot." target="_blank" rel="noopener" class="inline-flex items-center px-3 py-2 rounded-md border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50 transition">
+          Probar bot
+        </a>
+        <a href="https://app.kalabot.com/signup" target="_blank" rel="noopener" class="inline-flex items-center px-3 py-2 rounded-md bg-primary-500 text-white text-sm font-medium hover:bg-primary-600 transition">
+          Registrarme
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative isolate">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+        <div class="text-center">
+          <h1 class="text-4xl sm:text-5xl text-pretty tracking-tight font-bold text-highlighted">Prueba nuestro bot</h1>
+          <p class="mt-6 text-lg text-muted max-w-2xl mx-auto">
+            Habla con el bot por WhatsApp y revisa un calendario publico de ejemplo para ver como funciona la experiencia completa. Puedes preguntar como funciona Kalabot, precios, configuracion y cualquier duda: responde igual que lo hara en tu negocio.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-8 sm:grid-cols-2">
+          <div class="rounded-xl p-6 border border-slate-200 bg-white">
+            <h2 class="text-xl font-semibold text-highlighted">1) Escribe al bot</h2>
+            <p class="mt-3 text-slate-600 text-sm">Si estas en el movil, abre WhatsApp directamente. Si estas en ordenador y no tienes WhatsApp instalado, usa el numero de telefono.</p>
+            <div class="mt-6 flex flex-col gap-3">
+              <a href="https://wa.me/34600111222?text=Hola%2C%20quiero%20probar%20el%20bot." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary-500 text-white font-medium hover:bg-primary-600 transition">
+                Abrir WhatsApp
+              </a>
+              <p class="text-sm text-slate-700 text-center">Numero de prueba: <span class="font-semibold">+34 600 11 12 22</span></p>
+            </div>
+          </div>
+
+          <div class="rounded-xl p-6 border border-slate-200 bg-white">
+            <h2 class="text-xl font-semibold text-highlighted">2) Consulta el calendario publico</h2>
+            <p class="mt-3 text-slate-600 text-sm">Usa este calendario para comprobar disponibilidad y seguir la demo paso a paso.</p>
+            <div class="mt-6">
+              <a href="https://wa.me/34600111222?text=Hola%2C%20quiero%20el%20enlace%20del%20calendario%20publico%20de%20prueba." target="_blank" rel="noopener" class="inline-flex w-full items-center justify-center gap-2 px-5 py-3 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition">
+                Ver calendario publico de prueba
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 rounded-xl p-6 border border-slate-200 bg-slate-50">
+          <h3 class="text-lg font-semibold text-highlighted">Que vas a ver en esta demo</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-700">
+            <li>Reserva por WhatsApp en lenguaje natural.</li>
+            <li>Respuestas a preguntas sobre Kalabot: funcionamiento, precios y configuracion.</li>
+            <li>Respuestas a preguntas frecuentes del negocio.</li>
+            <li>Confirmacion de cita y flujo de atencion real.</li>
+            <li>La misma experiencia conversacional que tendran tus clientes.</li>
+          </ul>
+        </div>
+
+        <div class="mt-10 text-center">
+          <a href="https://app.kalabot.com/signup" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary-500 text-white font-medium hover:bg-primary-600 transition text-lg">
+            Registrarme ahora
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-slate-500 space-y-2">
+      <p>© <span id="year"></span> Kalabot. Todos los derechos reservados.</p>
+      <p class="flex flex-wrap justify-center gap-4">
+        <a href="privacy.html" class="hover:text-slate-700">Privacidad</a>
+        <a href="tos.html" class="hover:text-slate-700">Terminos</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

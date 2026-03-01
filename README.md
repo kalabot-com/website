@@ -2,155 +2,150 @@
 
 ## 1. Problem
 
-- Small businesses (salons, restaurants, clinics, service providers, professionals) waste time answering calls/WhatsApp manually for **bookings, inquiries, and service requests**.
-- Existing solutions are either:
-  - Too **complex** (require Meta/Facebook onboarding, technical setup).
-  - Too **generic** (multichannel CRMs not designed for SMB needs).
-- Result: lost leads, missed bookings, overworked staff.
+- Small businesses (salons, restaurants, clinics, service providers) waste time answering calls and WhatsApp for **bookings** and **repeated questions** (hours, prices, services, location).
+- Many SMBs have no website or cannot keep one updated — clients expect instant answers anyway.
+- Existing solutions are either too complex (heavy Meta onboarding, technical setup) or too generic (multichannel CRMs not designed for SMB needs).
+- Result: lost bookings, frustrated clients, overworked staff.
 
 
 ## 2. Solution
 
-- **Frictionless WhatsApp automation platform**: pay → get a WhatsApp Business number → start. No WABA, just web version with Baileys.
-- Industry-specific **templates**:
-  - Booking flow (Google Calendar sync).
-  - Lead qualification (lawyers, architects, consultants).
-  - Service dispatch (plumbers, cleaners).
-- **Dashboard**: see all conversations + bookings/leads/jobs in one place.
-- **Top support**: onboarding + live help, tuned for non-technical SMB owners.
+- **WhatsApp-first business assistant** focused on two pillars:
+  1. **Bookings**: 24/7 scheduling with Google Calendar sync.
+  2. **Conversational Business Info**: clients ask questions via WhatsApp (hours, prices, services, FAQs); the bot answers from content the owner provides — effectively replacing the need for a website for common inquiries.
 
-### 2.1 Booking Product
+- **Official WhatsApp Business API**: quality, resilience, and trust. No reverse‑engineered protocols.
 
-We will start with this solution.
+- **Simple onboarding**: registration → payment → connect calendar → upload your info (price list, FAQs) → start receiving clients.
+- **Dashboard**: view all conversations, bookings, and client interactions in one place.
+- **Human support**: onboarding and live help tuned for non-technical SMB owners.
+
+
+### 2.1 Product Scope
+
+**In scope**
+- Bookings (Google Calendar integration)
+- Conversational Business Info (owner-provided content, AI-powered answers to client questions)
+- Reminders and confirmations to reduce no-shows
+- Single, focused WhatsApp channel
+
+**Out of scope**
+- Lead qualification flows
+- Service dispatch / field-worker management
+- Multichannel inboxes
+- Generic CRM features
+
 
 #### Onboarding
 - Registration
 - Payment
-  - Kalabot: Get new phone number
-- Download Whatsapp business
-- Whatsapp activation
-  - Follow instalation
-  - Use new phone number
-  - Kalabot: Receive the SMS code, send to the client
-  - Fill the code in the app
-- Google Calendar integration: Link existing calendar in two clicks.
-- Assisted setup: The professional uploads a photo of their current price list. AI (using Kimi k2.5 vision) extracts services, prices, and durations automatically.
-- QR link: Share to start receiving bookings
+- WhatsApp Business API: connect your existing WhatsApp Business number or get a new one through our provisioning
+- Google Calendar integration: link existing calendar in two clicks
+- **Business Info setup**: upload price list (photo or document); AI (Kimi k2.5 vision) extracts services, prices, durations. Optionally add FAQs, hours, location, etc.
+- QR link or WhatsApp link: share to start receiving bookings and questions
 
 #### Main Objectives
 
 **A. End Customer Experience (WhatsApp user)**
+- **Natural feel**: the customer feels they are talking to an efficient human assistant. No "Press 1" menus.
+- **24/7 availability**: book and get answers at any time.
+- **Reduced no-shows**: reminders and confirmation flows with clear, persuasive language.
+- **Instant answers**: common questions (hours, prices, services) answered immediately from owner content.
 
-- **Natural feel**: The customer should feel they are talking to a very efficient human assistant. No "Press 1" menus.
-- **24/7 availability**: Ability to book around the clock without the professional having to touch their phone.
-- **Reduce no-shows**: Automatic reminder and confirmation system with persuasive language.
-
-**B. Professional Experience (Hairdresser, Physio)**
-
-- **Instant onboarding**: Google Calendar integration in two clicks and connection of a dedicated WhatsApp number to separate personal from professional life.
-- **Zero maintenance**: The professional only looks at their calendar. If they need to move an appointment, they do it in Google Calendar and the bot notifies the client and renegotiates the slot.
-- **Voice/chat control**: The professional can "talk" to their own bot to block hours or add manual appointments while working.
+**B. Professional Experience (business owner)**
+- **Instant onboarding**: calendar + WhatsApp + business info in minutes.
+- **Zero maintenance**: manage everything from the calendar. Move an appointment → the bot notifies the client.
+- **No website needed**: clients get info through WhatsApp; the owner provides content once.
 
 #### Technical Architecture
 
-**3.1 Connectivity Layer ("The Body")**
+**3.1 Connectivity Layer**
+- **WhatsApp Business API**: official Meta API for reliability, compliance, and scalability.
+- **Session and number lifecycle**: each client gets a dedicated WhatsApp Business number; auth and delivery handled through the official stack.
 
-- **WhatsApp engine**: Baileys. As a reverse-engineered WhatsApp Web protocol library, it allows much higher instance density per server than Puppeteer.
-- **Session isolation**: Each client has a lightweight container or isolated process managing their WhatsApp auth state, so if one session drops, it does not affect the rest of the network.
-
-**3.2 Intelligence Layer ("The Brain")**
-
-- **Orchestrator**: Agent Swarm using Kimi k2.5 SDK for cost efficiency.
-- **Triage agent**: Analyzes incoming messages. Is it a new appointment? A cancellation? A price question?
-- **Calendar agent**: Translates natural language into Google API queries (e.g. "Tuesday afternoon" → `timeMin: 2026-02-24T16:00:00Z`).
-- **Closing agent**: Drafts the final response seeking explicit confirmation.
+**3.2 Intelligence Layer**
+- **Orchestrator**: agent swarm using Kimi k2.5 for cost efficiency.
+- **Triage agent**: classifies incoming messages — new booking, cancellation, price question, FAQ, other.
+- **Booking agent**: natural language → Google Calendar queries (e.g. "Tuesday afternoon" → `timeMin`, `timeMax`).
+- **Info agent**: answers client questions using owner-provided content (services, prices, hours, FAQs).
+- **Closing agent**: drafts final responses and seeks explicit confirmation when needed.
 
 **3.3 Calendar Integration**
-
-- **Google Calendar API**: Heavy use of `freeBusy` to check availability in real time.
-- **Buffer logic**: The system automatically adds "cleanup time" between appointments (configurable by the professional) to avoid overlap.
+- **Google Calendar API**: real-time availability via `freeBusy`.
+- **Buffer logic**: configurable cleanup time between appointments to avoid overlap.
 
 #### Service Definition and Business Logic
 
-The system supports a complex service matrix configured by the professional in their admin panel:
+The system supports a service matrix configured by the owner:
 
-| Service            | Estimated Duration | AI Requirements                                                                 |
-| ------------------ | ------------------ | ------------------------------------------------------------------------------- |
-| Quick cut          | 20 min             | Immediate confirmation.                                                         |
-| Colour and styling | 120 min            | Verify long slots; do not offer if close to closing.                            |
-| Physio (session)   | 60 min             | Ask if first visit (requires more time for intake).                             |
+| Service            | Estimated Duration | AI Requirements                                |
+| ------------------ | ------------------ | ---------------------------------------------- |
+| Quick cut          | 20 min             | Immediate confirmation                         |
+| Colour and styling | 120 min            | Verify long slots; avoid close to closing      |
+| Physio (session)   | 60 min             | Ask if first visit (needs more time for intake) |
 
 
 ## 3. Target Market
 
-- **Initial geography**: Spain (WhatsApp penetration ~90%, but only ~27% SMB adoption).
-- **Expansion**: Europe, LATAM, India, Brazil (similar SMB + WhatsApp-heavy markets).
-- **Segments**:
-  - Booking-based: salons, clinics, restaurants.
-  - Lead-based: lawyers, architects, consultants.
-  - Dispatch-based: plumbers, electricians, cleaners.
+- **Geography**: Spain first (WhatsApp penetration ~90%, low SMB automation adoption), then Europe, LATAM, India, Brazil.
+- **Segments**: booking-heavy SMBs — salons, clinics, restaurants, wellness studios, consultants.
+- **Ideal profile**: businesses that get lots of "what are your hours?" and "how much is X?" — and want to offload both bookings and info to WhatsApp.
 
 
 ## 4. Unique Value Proposition
 
-- "Your **24/7 receptionist** on WhatsApp — set up instantly, without tech headaches."
-- Unlike competitors:
-  - **Not multichannel bloat** (focus only on WhatsApp).
-  - **Instant onboarding** (we provision number + templates for them).
-  - **Vertical templates** (ready-to-use, no flow building needed).
+- "Your **24/7 receptionist** on WhatsApp — bookings and answers to client questions, without a website."
+- **WhatsApp-first**: no multichannel bloat; one channel done well.
+- **Official API**: quality, resilience, trust.
+- **Conversational Business Info**: replace a static website with a bot that answers from your content.
+- **Vertical templates**: ready-to-use flows, no flow builder required.
 
 
 ## 5. Competitors
 
-### 2.1 Booking Product
-- **Booksy**: 29€ (base) + 20€ (per extra calendar)
-- **Treatwell**: Cobran comisión por cada cita si viene de su marketplace. Kalabot es una cuota fija, lo que prefiere el peluquero que ya tiene su clientela fija en el pueblo.
-- **Calendly**: 12€ (personal, up to 6 calendars). Or 20€/person for teams
+### Booking products
+- **Booksy**: 29€ base + 20€ per extra calendar
+- **Treatwell**: commission per booking from their marketplace. Kalabot is fixed fee — better for businesses with an existing client base.
+- **Calendly**: 12€ personal (up to 6 calendars); 20€/person for teams
 
-### WABA products
-
-- **360dialog** – frictionless WABA, but developer-focused, no SMB dashboard.
-- **Tidio / Respond.io** – good UI, but multichannel, not WhatsApp-first, limited SMB flows.
-- **WATI, Callbell, Gupshup** – offer inboxes, but lack easy onboarding + SMB simplicity.
-- **Opportunity**: combine frictionless onboarding + templates + strong UX.
+### WhatsApp Business API products
+- **360dialog**: developer-focused, no SMB dashboard
+- **Tidio, Respond.io**: multichannel, not WhatsApp-first, limited SMB flows
+- **WATI, Callbell, Gupshup**: inboxes and automation, but heavier onboarding, less SMB simplicity
+- **Opportunity**: simple onboarding + bookings + conversational info + strong UX on the official API
 
 
 ## 6. Business Model (PENDING)
 
-- **Pricing (Monthly subscription)**
-  - BASE: 19.90€ (1 phone number and calendar)
-  - additional calendar: +9.90€ per calendar
-  - smart Reminders: +10€ per calendar
-  - smart Fill & Recovery: +10€ per calendar
+- **Pricing (monthly subscription)**
+  - BASE: 15€ (1 phone number + calendar)
+  - Additional calendar: +10€ per calendar
+  - Smart reminders: +10€ per calendar (cost: 16 books per day x 21 days x 0.0166€ = 5.5776€)
+  - Smart fill & recovery: +10€ per 100 messages (cost: 100 messages x 0.0509€ = 5.09€)
 
-
-- **Referals program**
-  - Every referal: 5€ (while the referal continues paying)
+- **Referral program**
+  - 5€ per referral (while the referred client continues paying)
   - The client must pay at least 5€
 
-- **Costs**:
-  - Zadarma + IA + Server ~4,90€
-  - Stripe ~0,65 (€1.5% + 0.25€ sobre 19,90€)
-  - Software Facturación ~0,30€ (Quaderno/Holded: 30€/mes entre 100 clientes)
-  - Gestoría / Autónomos ~1,50€ (Prorrateando gastos de empresa/autónomo)
-  - TOTAL GASTOS ~7,35
+- **Costs**
+  - Telnyx (numbers) + AI + server: ~2.90€
+  - Stripe: ~0.65€ (1.5% + 0.25€ on 19.90€)
+  - Invoicing (Quaderno/Holded): ~0.30€
+  - Admin / self-employed overhead: ~1.50€
+  - **Total costs**: ~5.35€
+
 
 ## 7. Go-to-Market
 
-- **Pilot phase** (flexible client mix):
-  - Personal network: 3 salons, 1 restaurant, 1 architect (or similar booking-heavy SMBs).
-  - Goal: validate product fit and willingness to pay before broader launch.
-- **Acquisition channels** (Spain first):
-  - Direct outreach in SMB verticals.
-  - Referals
-  - Ads?
-- **Expansion**: WhatsApp-heavy markets (Spain → LATAM → EU/India).
+- **Pilot phase**: personal network — 3 salons, 1 restaurant, 1 consultant (or similar booking-heavy SMBs). Goal: validate product fit and willingness to pay.
+- **Acquisition (Spain first)**: direct outreach, referrals, ads (to be defined).
+- **Expansion**: WhatsApp-heavy markets (Spain → LATAM → EU / India).
 
 
 ## 8. Risks & Mitigation (PENDING)
 
-- **Onboarding friction (Meta/Facebook requirements)** → Use own WABA for MVP, migrate big clients to official WABA later.
-- **Compliance (spam, misuse)** → Strict opt-in, monitor quality scores, enforce usage policies.
-- **Competition from bigger players** → Differentiate with SMB simplicity + human support.
-- **Technical / operational (Baileys stability, scaling)** → Session isolation per client; monitor session health; plan migration path to official API for high-volume clients.
-- **Regulatory (GDPR, Meta policy)** → Data processing agreements, clear privacy policy; stay aligned with Meta terms of service.
+- **Onboarding friction (Meta / WABA requirements)**: clear documentation, assisted onboarding; provision numbers where possible.
+- **Compliance (spam, misuse)**: strict opt-in, quality score monitoring, usage policies.
+- **Competition**: differentiate with SMB simplicity, bookings + info, human support.
+- **Technical / operational**: official WhatsApp API reduces stability concerns vs. reverse‑engineered solutions; monitor delivery and session health.
+- **Regulatory (GDPR, Meta policy)**: data processing agreements, privacy policy, alignment with Meta ToS.
