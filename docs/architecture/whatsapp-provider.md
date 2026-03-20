@@ -1,8 +1,9 @@
-# Meta WhatsApp Provider Configuration
+# WhatsApp Provider Configuration
 
-This document describes Meta's provider ecosystem, the differences between provider types, onboarding flows with and without an existing WABA, and the steps required to operate as a Business Solution.
+This document describes Meta's provider ecosystem, the differences between provider types, the steps required to operate as a Business Solution, and the Business Solution checklist.
 
-For implementation decisions, the locked contract is defined in [v1 Product Contract](architecture/v1-product-contract.md).
+For ownership rules, number policy, and the locked contract, see [v1 Product Contract](v1-product-contract.md).
+For onboarding flows (with and without WABA), see [Onboarding](../onboarding.md).
 
 ---
 
@@ -79,18 +80,7 @@ The distinction is **not technical at the API level** — both use the same Clou
 
 > **Note:** While a number is connected to the API, it cannot be used in the WhatsApp mobile app.
 
-### 3.4 Client Onboarding
-
-Two scenarios:
-
-
-| Scenario                     | Process                                                                                                                   |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| **Client has existing WABA** | Client grants you access to their Business Manager → you connect their WABA to your app via Embedded Signup or Graph API. |
-| **Client has no WABA**       | Client completes Embedded Signup → Meta creates Business Manager and WABA for them → you receive tokens and connect Cloud API. In both cases, WABA and Business Manager belong to the client. |
-
-
-### 3.5 Backend & Dashboard
+### 3.4 Backend & Dashboard
 
 - Webhook to receive messages
 - Queue for resilience and retries
@@ -99,94 +89,7 @@ Two scenarios:
 
 ---
 
-## 4. Onboarding Flows: With vs. Without WABA
-
-### 4.1 Without WABA (Client Has No Existing Account)
-
-Client does not yet have a WABA. You create everything via Embedded Signup.
-
-#### User-Facing Flow
-
-
-| Step | Action                                     |
-| ---- | ------------------------------------------ |
-| 1    | Click "Connect WhatsApp"                   |
-| 2    | Log in with Facebook / Meta                |
-| 3    | Enter basic business info (name, category) |
-| 4    | Verify number (SMS or phone call)          |
-| 5    | Accept terms                               |
-| 6    | Done                                       |
-
-
-**What the user does *not* see or do:**
-
-- Does not see Business Manager
-- Does not create anything manually
-- Does not touch technical settings
-
-#### Internal / Technical Flow
-
-1. Embedded Signup is launched from your app.
-2. If the user has no Business Manager:
-  - Meta creates a basic one automatically.
-3. A new WABA is created under that Business Manager.
-4. The number is created or registered:
-  - Can be a new number (if you purchased it beforehand).
-  - Or an existing number not yet on WhatsApp.
-5. Meta:
-  - Registers the number in Cloud API.
-  - Links it to your app.
-  - Returns Phone Number ID and WABA ID.
-6. Your backend receives:
-  - Access token
-  - WABA ID
-  - Phone Number ID
-  - Business ID
-7. You configure:
-  - Webhook
-  - Basic templates (e.g., reminder, confirmation)
-  - Internal usage limits
-  - Payment method (your card if you pay for messaging)
-
----
-
-### 4.2 With WABA (Client Has Existing Account)
-
-Client already has a WABA in their Business Manager. You connect it to your app.
-
-#### User-Facing Flow
-
-
-| Step | Action                         |
-| ---- | ------------------------------ |
-| 1    | Click "Connect WhatsApp"       |
-| 2    | Log in with Facebook / Meta    |
-| 3    | Select their existing business |
-| 4    | Confirm permissions            |
-| 5    | Done                           |
-
-
-Single flow — no navigating across multiple Meta sites.
-
-#### Internal / Technical Flow
-
-1. Embedded Signup detects that a WABA already exists in their Business Manager.
-2. The user selects:
-  - Their business
-  - Their existing WABA
-  - The number to connect
-3. Meta:
-  - Registers that number in Cloud API.
-  - Unlinks it from the WhatsApp Business app if it was there.
-4. Your backend receives:
-  - WABA ID
-  - Phone Number ID
-  - Access token
-5. You add your card as the payment method (if you pay for messaging on their behalf).
-
----
-
-## 5. Business Checklist: Achieving Business Solution Status
+## 4. Business Checklist: Achieving Business Solution Status
 
 From a **business and operations** perspective, these items are required to operate as a proper Business Solution:
 
@@ -200,13 +103,12 @@ From a **business and operations** perspective, these items are required to oper
 
 ### Numbers and WABA
 
-In both flows (Section 4), the **WABA and Business Manager belong to the client**. You only obtain permissions and connect the Cloud API.
+The **WABA and Business Manager belong to the client** in both onboarding flows. Kalabot only obtains permissions and connects the Cloud API.
 
 Number contract for v1:
 
 - One dedicated number per client (no shared numbers).
 - If the client does not have an eligible number path, provision a dedicated Telnyx number during onboarding.
-
 - Support both onboarding flows: with WABA and without WABA
 - Obtain partner access / permissions to the client's Business Manager
 - Connect the client's WABA and phone number(s) to your Cloud API app
@@ -216,7 +118,7 @@ Number contract for v1:
 
 ### Payment and Billing
 
-- Add payment method in Business Manager (your card or client’s)
+- Add payment method in Business Manager (your card or client's)
 - Decide who pays for messaging (you vs. client)
 - Monitor usage and costs to avoid surprises
 
@@ -224,7 +126,7 @@ Number contract for v1:
 
 - Implement Embedded Signup flow (with and without existing WABA)
 - Handle both flows: client has WABA vs. client does not
-- Provide clear UI for “Connect WhatsApp” and permission steps
+- Provide clear UI for "Connect WhatsApp" and permission steps
 - Communicate to the user that the number cannot be used in the mobile app while on API
 
 ### Technical Backend
@@ -240,3 +142,4 @@ Number contract for v1:
 - Document internal flows (with/without WABA) for support and engineering
 - Process for handling Meta policy or verification issues
 - Plan for scaling and limits (verified vs. unverified business)
+

@@ -90,11 +90,7 @@ Kalabot must support both onboarding flows. The path depends on whether the clie
 
 #### Critical Rules to Communicate
 
-- The WABA and Business Manager always belong to the client in both flows.
-- Kalabot only gets permissions and connects Cloud API.
-- If the client does not have a number/WABA, Kalabot provides the number via Telnyx during onboarding.
-- One dedicated number is assigned per client; shared numbers are not allowed.
-- A number connected to Cloud API cannot be used simultaneously in the WhatsApp Business mobile app.
+See [WhatsApp Provider Configuration](architecture/whatsapp-provider.md) for ownership rules, number policy, and provider constraints.
 
 ### Step 4: Connect Google Calendar
 
@@ -136,15 +132,7 @@ After onboarding is complete:
 
 ## 5. Segment-Specific Considerations
 
-Use these values to suggest defaults during onboarding (guidance, not hard limits):
-
-| Segment | Typical Calendars | Operational Note |
-| --- | --- | --- |
-| Beauty and aesthetics | 1 to 5 | Usually one calendar per chair, cabin, or artist |
-| Health and wellness | 1 to 4 | Usually one calendar per practitioner |
-| Professional services | 1 to 8 | Usually one calendar per bay, tutor, court, or agent |
-
-These defaults reduce setup friction and improve first-day configuration quality.
+Use segment defaults to suggest calendar counts during setup (guidance, not hard limits). See [Target Customer Segments](product/target-segments.md) for the full breakdown by business type.
 
 ---
 
@@ -159,7 +147,7 @@ These defaults reduce setup friction and improve first-day configuration quality
 
 ## 7. References
 
-- [Business Plan](business%20plan.md)
-- [Target Customer Segments](clientes.md)
-- [Meta WhatsApp Provider Configuration](meta%20config.md)
+- [Product Overview](product/overview.md)
+- [Target Customer Segments](product/target-segments.md)
+- [WhatsApp Provider Configuration](architecture/whatsapp-provider.md)
 - [v1 Product Contract (Locked)](architecture/v1-product-contract.md)

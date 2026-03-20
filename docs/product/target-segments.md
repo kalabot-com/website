@@ -58,30 +58,15 @@ Customers prioritize reliability and professionalism. WhatsApp reminders and con
 
 ---
 
-## 4. Restaurants (THEY ARE NOT A POTENTIAL CLIENT, USE CASE IS TOO DIFFERENT)
+## 4. Restaurants (Out of Scope)
 
-*Special case*
-
-
-| Business Type | Calendars | Notes                                 |
-| ------------- | --------- | ------------------------------------- |
-| Restaurants   | 1         | Tables managed as a whole or by shift |
-
-
-**Average calendars per client:** 1
+Restaurants are not a target segment. Table management and shift logic are materially different from appointment-based scheduling.
 
 ---
 
-## Segment Summary
+## Strategic Notes
 
+- At 3–4 staff, Booksy's volume discounts become more attractive — our sweet spot is smaller teams.
+- Overall average across in-scope segments: ~2.5 calendars per client.
+- Ideal profile: businesses that receive many "what are your hours?" and "how much is X?" queries, and want to offload both bookings and info to WhatsApp.
 
-| Segment               | Avg. Calendars |
-| --------------------- | -------------- |
-| Beauty & Aesthetics   | 2.5            |
-| Health & Wellness     | 1.8            |
-| Professional Services | 3.2            |
-| Restaurants           | 1.0            |
-| **Overall average**   | **~2**         |
-
-
----
