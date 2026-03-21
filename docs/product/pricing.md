@@ -4,23 +4,20 @@ Single source of truth for Kalabot pricing. The canonical locked contract is in 
 
 ---
 
-## Subscription Tiers (Monthly)
+## Subscription (Monthly)
 
-| Tier | Price | Calendar Limit |
-|------|-------|----------------|
-| Tier 1 | EUR 25 per calendar | Up to 2 calendars |
-| Tier 2 | EUR 20 per calendar | Up to 10 calendars |
-| Tier 3 | Contact sales | Custom |
+| Price | Calendars |
+|-------|-----------|
+| EUR 25 per calendar | Unlimited |
 
-**Strategic implication**: Most clients need ~2 calendars → ~€50/month per customer, doubling revenue per acquisition vs. single-calendar pricing.
+No tiers, no volume discount. One flat price per calendar, regardless of how many calendars the account has.
 
 ---
 
 ## Referral Program
 
-- EUR 5 per referral (while the referred client continues paying).
-- Referred clients have a minimum price floor of EUR 10 per calendar.
-- Add-ons are excluded from referral floor pricing.
+- EUR 5 per referral per month (while the referred client continues paying).
+- Add-ons are excluded from referral earnings.
 
 ---
 

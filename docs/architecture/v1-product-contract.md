@@ -40,18 +40,18 @@ Contract rules:
 
 ## 3. Pricing Contract
 
-### Subscription tiers (monthly)
+### Subscription (monthly)
 
-| Tier | Price | Calendar limit |
-| --- | --- | --- |
-| Tier 1 | EUR 25 per calendar | Up to 2 calendars |
-| Tier 2 | EUR 20 per calendar | Up to 10 calendars |
-| Tier 3 | Contact sales | Custom |
+| Price | Calendars |
+| --- | --- |
+| EUR 25 per calendar | Unlimited |
 
-### Referral floor
+No tiers. One flat price regardless of calendar count.
 
-- Referred clients have a minimum price floor of EUR 10 per calendar.
-- Add-ons are excluded from referral floor pricing.
+### Referral
+
+- EUR 5 per referral per month, while the referred client continues paying.
+- Add-ons are excluded from referral earnings.
 
 ### Add-ons
 

@@ -53,13 +53,7 @@ This sequence is mandatory and is defined in the [v1 Product Contract](architect
 
 ### Step 2: Payment
 
-- Select subscription tier:
-  - Tier 1: up to 2 calendars, EUR 25/calendar
-  - Tier 2: up to 10 calendars, EUR 20/calendar
-  - Tier 3: contact sales
-- If referred, apply referral pricing floor:
-  - Minimum EUR 10/calendar
-  - Add-ons are not included
+- Select the number of calendars needed (EUR 25 per calendar, no tier limit)
 - Add payment method (Stripe)
 
 ### Step 3: Connect WhatsApp
